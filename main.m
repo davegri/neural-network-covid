@@ -10,8 +10,7 @@ raw_data = readtable('corona_new_cases.csv');
 
 n_days = 14;
 
-% TODO 1: look at the preprocessed data and understand the data 
-%       structure you will work with
+
 X_all   = buffer(raw_data{:, 'New_verified_cases'}, n_days, n_days - 1);
 X_all   = X_all(:, n_days:(end - 1));
 Y0_all  = raw_data{(n_days + 1):end, 'New_verified_cases'}';
@@ -106,7 +105,7 @@ end
 
 %% Get output
 
-% TODO 7: Forward pass the whole training set
+Forward pass the whole training set
 X_train_fp{1} = X_train;
 % bias neuron for all examples
 X_train_fp{1} = [X_train_fp{1};ones(1,size(X_train_fp{1},2))];
@@ -119,7 +118,7 @@ for i=2:L
 end
 Y_train = X_train_fp{L};
 
-% TODO 8: Forward pass the whole validation set
+Forward pass the whole validation set
 X_valid_fp{1} = X_valid;
 % bias neuron for all examples
 X_valid_fp{1} = [X_valid_fp{1};ones(1,size(X_valid_fp{1},2))];
@@ -153,12 +152,12 @@ exp_Y0_valid = exp(Y0_valid);
 % R2
 train_R2 = corr(exp_Y_train', exp_Y0_train');
 valid_R2 = corr(exp_Y_valid', exp_Y0_valid');
-fprintf('Training R²:\t%g\nValidation R²:\t%g\n', ...
+fprintf('Training RÂ²:\t%g\nValidation RÂ²:\t%g\n', ...
     train_R2, valid_R2);
 
 %% Plot fit
 
-%TODO 10: plot the predicted values of the train and validation vs. the
+%plot the predicted values of the train and validation vs. the
 % true values. Use a scatter plot.  
 % 1. use different colors for each set
 % 2. create a figure legend with the labels for each set
